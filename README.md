@@ -75,13 +75,13 @@ open index.html
 ```
 
 ---
-## 📸 Screenshots
+
 ## 📸 Screenshots
 
 assets/images/weather-dashboard_2026-03-09_002814.png
 
-## ## 🔮 Future Enhancements Future Enhancements
-## 🔮 Future Enhancements
+## 🔮 Future Enhancements 
+
 Add hourly forecast view
 
 Include weather alerts
@@ -90,15 +90,16 @@ Add dark/light theme toggle
 
 Improve accessibility with ARIA labels
 
+---
+
 ## 🧾 Credits
-## 🧾 Credits
+
 OpenWeather API for data
 
 Bootstrap for layout
 
 Icons from Font Awesome
 
-## 🧑‍💻 Author
 ## 🧑‍💻 Author
 
 Zsolt Földes 
