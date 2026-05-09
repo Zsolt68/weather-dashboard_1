@@ -16,10 +16,10 @@ A responsive weather application that allows users to search for any city and vi
 
 ## 🧠 UX Design
 - Clear welcome message and instructions on first load
-- Default city (Dublin) displayed to avoid empty state
+- Default city (Dublin) displayed to avoid an empty state
 - Prominent search bar and geolocation button
 - Consistent card layout for forecast data
-- Accessible color palette and readable typography
+- Accessible colour palette and readable typography
 
 ---
 
@@ -30,7 +30,7 @@ A responsive weather application that allows users to search for any city and vi
 | Frameworks | Bootstrap 5 |
 | APIs | OpenWeather API |
 | Version Control | Git & GitHub |
-| Deployment | Heroku |
+| Deployment | GitHub |
 
 ---
 
