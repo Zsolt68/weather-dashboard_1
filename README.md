@@ -72,6 +72,7 @@ To run : Go to
 git clone https://github.com/Zsolt68/weather-dashboard_1.git
 cd weather-dashboard_1
 open index.html
+```
 
 ---
 ## 📸 Screenshots
