@@ -66,9 +66,9 @@ weather-dashboard_1/
 ---
 
 ## 🚀 Deployment
-The project is deployed on **Heroku**.  
-To run locally:
-```bash
+The project is deployed on **GitHub**.  
+To run : Go to
+```
 git clone https://github.com/Zsolt68/weather-dashboard_1.git
 cd weather-dashboard_1
 open index.html
