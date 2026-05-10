@@ -26,3 +26,9 @@ body {
   background: #6fbfd9;
   padding: 20px;
 }
+
+#search-section { 
+  background: #fffacd; 
+  padding: 10px; 
+  margin-bottom: 20px; 
+}
