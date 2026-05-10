@@ -37,3 +37,9 @@ body {
   background: #f0e68c; 
   padding: 10px; 
 }
+
+current-weather { 
+  background: #e0ffff; 
+  padding: 10px; 
+  margin-bottom: 20px; 
+}
