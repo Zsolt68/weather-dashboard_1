@@ -11,3 +11,13 @@ body {
   background: #add8e6;
   padding: 20px;
 }
+
+.main-grid {
+  background: #e6e6fa;
+  padding: 20px;
+}
+
+.left-column {
+  background: #fafad2;
+  padding: 20px;
+}
