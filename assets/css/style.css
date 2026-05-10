@@ -43,3 +43,8 @@ current-weather {
   padding: 10px; 
   margin-bottom: 20px; 
 }
+
+#forecast { 
+  background: #d8eef0; 
+  padding: 10px;
+  }
