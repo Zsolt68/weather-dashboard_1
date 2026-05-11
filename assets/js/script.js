@@ -45,13 +45,36 @@ form.addEventListener("submit", function (e) {
 
   console.log("Searching for city:", city); // Test output
 
-
+  fetchWeather(city);
   input.value = ""; // Clear input
 });
 
 // Fetch current weather data for the given city
-//function fetchWeather(city) {
-  // Build API URL with city name and API key
+function fetchWeather(city) {
+
+  // Log the city value for debugging
+  console.log("fetchWeather called with:", city);
+
+  // Build full API request URL with city, key, and metric units
+  const url = `${currentWeatherURL}?q=${city}&appid=${apiKey}&units=metric`;
+
+  // Log URL to verify correct request format
+  console.log("STEP 1: about to call fetch with URL:", url);
+
+  // Send HTTP request to OpenWeather API
+  fetch(url)
+    .then((res) => {
+      // Log raw response object for debugging
+      console.log("STEP 2: raw response:", res);
+
+      // Convert response body to JSON
+      return res.json();
+    })
+    .then((data) => {
+      // Log parsed JSON for debugging
+      console.log("STEP 3: parsed JSON data:", data);
+    });
+}
 
 
   
