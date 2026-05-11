@@ -1,7 +1,5 @@
 ## Weather Dashboard (Steps 1–6)
 
-Author: Zsolt Földes — 2026
-
 ### Step 1 — Form Submit + Input Validation
 Feature Tested
 User enters a city name and submits the form.
