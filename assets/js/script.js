@@ -43,15 +43,15 @@ form.addEventListener("submit", function (e) {
     return;
   }
 
-  console.log("Searching for city:", city); // Temp test output
+  console.log("Searching for city:", city); // Test output
+
+
   input.value = ""; // Clear input
 });
 
 // Fetch current weather data for the given city
-function fetchWeather(city) {
+//function fetchWeather(city) {
   // Build API URL with city name and API key
-  const url =
-    `https://api.openweathermap.org/data/2.5/weather?q=${city}` +
-    `&appid=${apiKey}&units=metric`;
 
-}
+
+  
