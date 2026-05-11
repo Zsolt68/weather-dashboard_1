@@ -31,3 +31,4 @@ form.addEventListener("submit", function (e) {
   console.log("Searching for city:", city); // Temp test output
   input.value = ""; // Clear input
 });
+
