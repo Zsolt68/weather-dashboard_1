@@ -78,6 +78,7 @@ function fetchWeather(city) {
 
   // Log success before converting to JSON
     console.log("STEP 3: response OK, converting to JSON");
+
   // Convert response body to JSON object
   return res.json();
 })
@@ -99,5 +100,3 @@ function fetchWeather(city) {
       setTimeout(() => (message.textContent = ""), 3000);
     });
 }
-
-  
