@@ -16,7 +16,7 @@ const humidityEl = document.getElementById("humidity");
 const windEl = document.getElementById("wind");
 const pressureEl = document.getElementById("pressure");
 
-// Handle form submit
+// Listen for form submit of form submit handler
 form.addEventListener("submit", function (e) {
   e.preventDefault(); // Stop page reload
 
