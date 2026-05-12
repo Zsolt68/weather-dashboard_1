@@ -1,5 +1,3 @@
-
-
 //DOM elements for weather app
 // Select form, input, and message elements
 const form = document.getElementById("search-form");
@@ -30,7 +28,6 @@ const currentWeatherURL = "https://api.openweathermap.org/data/2.5/weather";
 // Base URL for 5-day / 3-hour forecast endpoint
 const forecastURL = "https://api.openweathermap.org/data/2.5/forecast";
 
-
 // Listen for form submit of form submit handler
 form.addEventListener("submit", function (e) {
   e.preventDefault(); // Stop page reload
@@ -51,7 +48,6 @@ form.addEventListener("submit", function (e) {
 
 // Fetch current weather data for the given city
 function fetchWeather(city) {
-
   // Log the city value for debugging
   console.log("fetchWeather called with:", city);
 
@@ -67,22 +63,22 @@ function fetchWeather(city) {
       // Log raw response object for debugging
       console.log("STEP 2: raw response:", res);
 
-  // Check if API returned a success status (200–299)
-  if (!res.ok) {
-   // Log failed status code for debugging 
-    console.log("STEP 3: response NOT OK, status:", res.status);
-    
-    // Stop chain and send error to catch()
-    throw new Error("City not found");
-  }
+      // Check if API returned a success status (200–299)
+      if (!res.ok) {
+        // Log failed status code for debugging
+        console.log("STEP 3: response NOT OK, status:", res.status);
 
-  // Log success before converting to JSON
-    console.log("STEP 3: response OK, converting to JSON");
+        // Stop chain and send error to catch()
+        throw new Error("City not found");
+      }
 
-  // Convert response body to JSON object
-  return res.json();
-})
-.then((data) => {
+      // Log success before converting to JSON
+      console.log("STEP 3: response OK, converting to JSON");
+
+      // Convert response body to JSON object
+      return res.json();
+    })
+    .then((data) => {
       // Log parsed JSON for debugging
       console.log("STEP 4: parsed JSON data:", data);
 
@@ -103,7 +99,6 @@ function fetchWeather(city) {
 
 // Update the Current Weather section with API data
 function updateCurrentWeather(data) {
-
   // Get city name from API response
   const cityName = data.name;
 
@@ -118,14 +113,13 @@ function updateCurrentWeather(data) {
   document.getElementById("city-name").textContent = cityName;
   document.getElementById("current-date").textContent = date;
 
-   // Update weather icon image
+  // Update weather icon image
   document.getElementById("weather-icon").src = iconURL;
 
   // Update temperature (°C)
-  document.getElementById("temperature").textContent =
-    `${data.main.temp}°C`;
+  document.getElementById("temperature").textContent = `${data.main.temp}°C`;
 
-   // Update weather description (e.g., "Cloudy")
+  // Update weather description (e.g., "Cloudy")
   document.getElementById("description").textContent =
     data.weather[0].description;
 
@@ -134,18 +128,24 @@ function updateCurrentWeather(data) {
     `${data.main.feels_like}°C`;
 
   // Update humidity percentage
-  document.getElementById("humidity").textContent =
-    `${data.main.humidity}%`;
+  document.getElementById("humidity").textContent = `${data.main.humidity}%`;
 
   // Update wind speed (m/s)
-  document.getElementById("wind").textContent =
-    `${data.wind.speed} m/s`;
+  document.getElementById("wind").textContent = `${data.wind.speed} m/s`;
 
   // Update pressure (hPa)
-  document.getElementById("pressure").textContent =
-    `${data.main.pressure} hPa`;
+  document.getElementById("pressure").textContent = `${data.main.pressure} hPa`;
 
-    // Log confirmation for testing
+  // Log confirmation for testing
   console.log("STEP 4: UI updated with current weather data");
+}
 
+// Fetch 5-day forecast data from API
+function fetchForecast(city) {
+  // Build forecast API URL
+  const url = `${forecastURL}?q=${city}&appid=${apiKey}&units=metric`;
+
+  console.log("STEP 5: Fetching forecast with URL:", url);
+
+  
 }
