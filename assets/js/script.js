@@ -110,5 +110,15 @@ function updateCurrentWeather(data) {
   // Convert timestamp to readable date
   const date = new Date(data.dt * 1000).toLocaleDateString("en-GB");
 
+  // Build icon URL using icon code from API
+  const iconCode = data.weather[0].icon;
+  const iconURL = `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
+
+  // Update city name and date in UI
+  document.getElementById("city-name").textContent = cityName;
+  document.getElementById("current-date").textContent = date;
+
   
+
+
 }
