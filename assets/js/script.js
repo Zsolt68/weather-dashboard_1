@@ -100,3 +100,15 @@ function fetchWeather(city) {
       setTimeout(() => (message.textContent = ""), 3000);
     });
 }
+
+// Update the Current Weather section with API data
+function updateCurrentWeather(data) {
+
+  // Get city name from API response
+  const cityName = data.name;
+
+  // Convert timestamp to readable date
+  const date = new Date(data.dt * 1000).toLocaleDateString("en-GB");
+
+  
+}
