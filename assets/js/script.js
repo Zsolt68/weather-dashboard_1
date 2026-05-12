@@ -180,7 +180,12 @@ function updateForecastUI(data) {
 
   // Loop through each day's forecast
   dailyData.forEach(day => {
-    // ...
+    // Convert timestamp to readable date
+  const date = new Date(day.dt * 1000).toLocaleDateString("en-GB");
+
+  // Build icon URL
+  const iconCode = day.weather[0].icon;
+  const iconURL = `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
   });
 
   console.log("STEP 5: Forecast UI updated");
