@@ -4,6 +4,9 @@ const form = document.getElementById("search-form");
 const input = document.getElementById("city-input");
 const message = document.getElementById("search-message");
 
+// Stores saved city names for search history
+let searchHistory = [];
+
 //DOM elements for weather app
 // Select current weather elements
 const cityNameEl = document.getElementById("city-name");
@@ -193,7 +196,7 @@ function updateForecastUI(data) {
       <div class="forecast-card">
         <h4>${date}</h4>
         <img src="${iconURL}" alt="Weather icon">
-        <p>${day.main.temp}°C</p>
+        <p>${Math.round(day.main.temp)}°C</p>
         <p>${day.weather[0].description}</p>
       </div>
     `;
