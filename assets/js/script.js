@@ -118,7 +118,7 @@ function updateCurrentWeather(data) {
   document.getElementById("weather-icon").src = iconURL;
 
   // Update temperature (°C)
-  document.getElementById("temperature").textContent = `${data.main.temp}°C`;
+  document.getElementById("temperature").textContent = `${Math.round(data.main.temp)}°C`;
 
   // Update weather description (e.g., "Cloudy")
   document.getElementById("description").textContent =
@@ -126,8 +126,8 @@ function updateCurrentWeather(data) {
 
   // Update "feels like" temperature
   document.getElementById("feels-like").textContent =
-    `${data.main.feels_like}°C`;
-
+    `${Math.round(data.main.feels_like)}°C`;
+    
   // Update humidity percentage
   document.getElementById("humidity").textContent = `${data.main.humidity}%`;
 
