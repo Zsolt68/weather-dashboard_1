@@ -166,3 +166,19 @@ function fetchForecast(city) {
       console.log("STEP 5: forecast error:", error.message);
     });
 }
+
+function updateForecastUI(data) {
+
+  // Select the forecast container
+  const forecastContainer = document.getElementById("forecast");
+  forecastContainer.innerHTML = ""; // Clear previous results
+
+
+
+  // Loop through each day's forecast
+  dailyData.forEach(day => {
+    // ...
+  });
+
+  console.log("STEP 5: Forecast UI updated");
+}
