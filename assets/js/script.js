@@ -173,7 +173,10 @@ function updateForecastUI(data) {
   const forecastContainer = document.getElementById("forecast");
   forecastContainer.innerHTML = ""; // Clear previous results
 
-
+ // Filter the list to get one forecast per day at 12:00
+  const dailyData = data.list.filter(item =>
+    item.dt_txt.includes("12:00:00")
+  );
 
   // Loop through each day's forecast
   dailyData.forEach(day => {
