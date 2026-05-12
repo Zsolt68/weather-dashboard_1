@@ -186,6 +186,20 @@ function updateForecastUI(data) {
   // Build icon URL
   const iconCode = day.weather[0].icon;
   const iconURL = `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
+
+  // Create forecast card HTML
+    const card = `
+      <div class="forecast-card">
+        <h4>${date}</h4>
+        <img src="${iconURL}" alt="Weather icon">
+        <p>${day.main.temp}°C</p>
+        <p>${day.weather[0].description}</p>
+      </div>
+    `;
+
+    // Insert card into container
+    forecastContainer.innerHTML += card;
+  
   });
 
   console.log("STEP 5: Forecast UI updated");
