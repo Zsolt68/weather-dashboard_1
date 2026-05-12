@@ -208,3 +208,16 @@ function updateForecastUI(data) {
 
   console.log("STEP 5: Forecast UI updated");
 }
+
+// Save a searched city into history and localStorage
+function saveToHistory(city) {
+  // Skip if city already exists in history
+  if (!searchHistory.includes(city)) {
+    // Add city to in-memory history array
+    searchHistory.push(city);
+    // Persist updated history to localStorage
+    localStorage.setItem("history", JSON.stringify(searchHistory));
+    // Re-render the visible history list
+    renderHistory();
+  }
+}
