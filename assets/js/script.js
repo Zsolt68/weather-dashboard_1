@@ -125,7 +125,25 @@ function updateCurrentWeather(data) {
   document.getElementById("temperature").textContent =
     `${data.main.temp}°C`;
 
-  
+   // Update weather description (e.g., "Cloudy")
+  document.getElementById("description").textContent =
+    data.weather[0].description;
+
+  // Update "feels like" temperature
+  document.getElementById("feels-like").textContent =
+    `${data.main.feels_like}°C`;
+
+  // Update humidity percentage
+  document.getElementById("humidity").textContent =
+    `${data.main.humidity}%`;
+
+  // Update wind speed (m/s)
+  document.getElementById("wind").textContent =
+    `${data.wind.speed} m/s`;
+
+  // Update pressure (hPa)
+  document.getElementById("pressure").textContent =
+    `${data.main.pressure} hPa`;
 
 
 }
