@@ -84,6 +84,7 @@ function fetchWeather(city) {
 
       // Update UI with weather data
       updateCurrentWeather(data);
+      fetchForecast(city); // Fetch forecast after current weather
     })
     .catch((error) => {
       // Log error message for debugging
@@ -170,7 +171,7 @@ function fetchForecast(city) {
 function updateForecastUI(data) {
 
   // Select the forecast container
-  const forecastContainer = document.getElementById("forecast");
+  const forecastContainer = document.getElementById("forecast-cards");
   forecastContainer.innerHTML = ""; // Clear previous results
 
  // Filter the list to get one forecast per day at 12:00
