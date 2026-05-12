@@ -147,5 +147,22 @@ function fetchForecast(city) {
 
   console.log("STEP 5: Fetching forecast with URL:", url);
 
-  
+  fetch(url)
+    .then((res) => {
+      console.log("STEP 5: raw forecast response:", res);
+
+      // Handle invalid city
+      if (!res.ok) {
+        throw new Error("Forecast not found");
+      }
+
+      return res.json();
+    })
+    .then((data) => {
+      console.log("STEP 5: forecast JSON data:", data);
+      updateForecastUI(data);
+    })
+    .catch((error) => {
+      console.log("STEP 5: forecast error:", error.message);
+    });
 }
