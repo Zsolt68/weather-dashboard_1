@@ -145,5 +145,7 @@ function updateCurrentWeather(data) {
   document.getElementById("pressure").textContent =
     `${data.main.pressure} hPa`;
 
+    // Log confirmation for testing
+  console.log("STEP 4: UI updated with current weather data");
 
 }
