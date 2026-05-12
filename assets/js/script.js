@@ -118,6 +118,13 @@ function updateCurrentWeather(data) {
   document.getElementById("city-name").textContent = cityName;
   document.getElementById("current-date").textContent = date;
 
+   // Update weather icon image
+  document.getElementById("weather-icon").src = iconURL;
+
+  // Update temperature (°C)
+  document.getElementById("temperature").textContent =
+    `${data.main.temp}°C`;
+
   
 
 
