@@ -31,22 +31,30 @@ const currentWeatherURL = "https://api.openweathermap.org/data/2.5/weather";
 // Base URL for 5-day / 3-hour forecast endpoint
 const forecastURL = "https://api.openweathermap.org/data/2.5/forecast";
 
-// Listen for form submit of form submit handler
+//Listen for the search form being submitted
 form.addEventListener("submit", function (e) {
-  e.preventDefault(); // Stop page reload
+  e.preventDefault(); // Stop page reload when the form is submitted
 
-  const city = input.value.trim(); // Get city text
+  // Get the text the user typed into the input field
+ const city = input.value.trim(); // Get city text
 
+// If the input is empty, show a message and stop the function
   if (city === "") {
     message.textContent = "Please enter a city name.";
     setTimeout(() => (message.textContent = ""), 3000);
     return;
   }
-
-  console.log("Searching for city:", city); // Test output
-
+// Log the city name for debugging in the console
+  console.log("Searching for city:", city);
+ 
+  // Fetch weather data for the entered city
   fetchWeather(city);
-  input.value = ""; // Clear input
+
+  // Save this city into the search history list
+  saveToHistory(city);
+  
+  // Clear the input field after searching
+  input.value = ""; // Clear input field after searching
 });
 
 // Fetch current weather data for the given city
@@ -253,6 +261,10 @@ function renderHistory() {
   });
   
 }
+
+// ---------------------------------------------
+// Load history from localStorage
+// ---------------------------------------------
 
 // Restore search history from localStorage on startup
 function loadHistory() {

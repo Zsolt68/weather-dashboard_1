@@ -38,6 +38,22 @@ body {
   padding: 10px; 
 }
 
+#history-list {
+  margin: 0;
+  padding: 0;
+}
+
+#history-list li {
+  list-style: none;
+  padding: 10px;
+  margin-bottom: 8px;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
 #current-weather { 
   background: #e0ffff; 
   padding: 10px; 
@@ -48,7 +64,7 @@ body {
   background: #d8eef0; 
   padding: 10px;
   }
-  
+
 #forecast-cards {
   display: flex;
   gap: 1rem;
