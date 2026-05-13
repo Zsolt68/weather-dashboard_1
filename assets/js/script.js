@@ -36,17 +36,17 @@ form.addEventListener("submit", function (e) {
   e.preventDefault(); // Stop page reload when the form is submitted
 
   // Get the text the user typed into the input field
- const city = input.value.trim(); // Get city text
+  const city = input.value.trim(); // Get city text
 
-// If the input is empty, show a message and stop the function
+  // If the input is empty, show a message and stop the function
   if (city === "") {
     message.textContent = "Please enter a city name.";
     setTimeout(() => (message.textContent = ""), 3000);
     return;
   }
-// Log the city name for debugging in the console
+  // Log the city name for debugging in the console
   console.log("Searching for city:", city);
- 
+
   // Fetch weather data for the entered city
   fetchWeather(city);
 
@@ -68,7 +68,6 @@ function fetchWeather(city) {
   // Send HTTP request to OpenWeather API
   fetch(url)
     .then((res) => {
-
       // Check if API returned a success status (200–299)
       if (!res.ok) {
         // Log failed status code for debugging
@@ -81,13 +80,11 @@ function fetchWeather(city) {
       return res.json();
     })
     .then((data) => {
-
       // Update UI with weather data
       updateCurrentWeather(data);
       fetchForecast(city); // Fetch forecast after current weather
     })
     .catch((error) => {
-
       // Show user-friendly error message
       message.textContent = "City not found.";
 
@@ -116,7 +113,8 @@ function updateCurrentWeather(data) {
   document.getElementById("weather-icon").src = iconURL;
 
   // Update temperature (°C)
-  document.getElementById("temperature").textContent = `${Math.round(data.main.temp)}°C`;
+  document.getElementById("temperature").textContent =
+    `${Math.round(data.main.temp)}°C`;
 
   // Update weather description (e.g., "Cloudy")
   document.getElementById("description").textContent =
@@ -125,7 +123,7 @@ function updateCurrentWeather(data) {
   // Update "feels like" temperature
   document.getElementById("feels-like").textContent =
     `${Math.round(data.main.feels_like)}°C`;
-    
+
   // Update humidity percentage
   document.getElementById("humidity").textContent = `${data.main.humidity}%`;
 
@@ -158,32 +156,29 @@ function fetchForecast(city) {
     .then((data) => {
       updateForecastUI(data);
     })
-    .catch((error) => {
-
-    });
+    .catch((error) => {});
 }
 
 function updateForecastUI(data) {
-
   // Select the forecast container
   const forecastContainer = document.getElementById("forecast-cards");
   forecastContainer.innerHTML = ""; // Clear previous results
 
- // Filter the list to get one forecast per day at 12:00
-  const dailyData = data.list.filter(item =>
-    item.dt_txt.includes("12:00:00")
+  // Filter the list to get one forecast per day at 12:00
+  const dailyData = data.list.filter((item) =>
+    item.dt_txt.includes("12:00:00"),
   );
 
   // Loop through each day's forecast
-  dailyData.forEach(day => {
+  dailyData.forEach((day) => {
     // Convert timestamp to readable date
-  const date = new Date(day.dt * 1000).toLocaleDateString("en-GB");
+    const date = new Date(day.dt * 1000).toLocaleDateString("en-GB");
 
-  // Build icon URL
-  const iconCode = day.weather[0].icon;
-  const iconURL = `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
+    // Build icon URL
+    const iconCode = day.weather[0].icon;
+    const iconURL = `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
 
-  // Create forecast card HTML
+    // Create forecast card HTML
     const card = `
       <div class="forecast-card">
         <h4>${date}</h4>
@@ -195,9 +190,7 @@ function updateForecastUI(data) {
 
     // Insert card into container
     forecastContainer.innerHTML += card;
-  
   });
-
 }
 
 // Save a searched city into history and localStorage
@@ -206,6 +199,12 @@ function saveToHistory(city) {
   if (!searchHistory.includes(city)) {
     // Add city to in-memory history array
     searchHistory.push(city);
+
+    // Limit history to last 5 cities
+    if (searchHistory.length > 5) {
+      searchHistory.shift(); // remove oldest entry
+    }
+
     // Persist updated history to localStorage
     localStorage.setItem("history", JSON.stringify(searchHistory));
     // Re-render the visible history list
@@ -225,7 +224,7 @@ function renderHistory() {
   list.innerHTML = "";
 
   // Create one <li> per saved city
-  searchHistory.forEach(city => {
+  searchHistory.forEach((city) => {
     // Create a new list item element
     const li = document.createElement("li");
     // Show the city name as text
@@ -242,7 +241,6 @@ function renderHistory() {
     // Add the list item to the history <ul>
     list.appendChild(li);
   });
-  
 }
 
 // ---------------------------------------------
@@ -257,6 +255,12 @@ function loadHistory() {
   if (stored) {
     // Convert JSON string back to array
     searchHistory = JSON.parse(stored);
+
+    //Trim to last 5 items on load
+    if (searchHistory.length > 5) {
+      searchHistory = searchHistory.slice(-5);
+      localStorage.setItem("history", JSON.stringify(searchHistory));
+    }
     // Render the restored history list
     renderHistory();
   }
@@ -264,4 +268,3 @@ function loadHistory() {
 
 // Load saved search history when the page first loads
 loadHistory();
-
