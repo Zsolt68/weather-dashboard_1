@@ -221,3 +221,12 @@ function saveToHistory(city) {
     renderHistory();
   }
 }
+
+// Build the visible list of past searches
+function renderHistory() {
+  // Get the <ul> that holds history items
+  const list = document.getElementById("history-list");
+  // Clear existing list items
+  list.innerHTML = "";
+  
+}
