@@ -127,8 +127,9 @@ function updateCurrentWeather(data) {
   // Update humidity percentage
   document.getElementById("humidity").textContent = `${data.main.humidity}%`;
 
-  // Update wind speed (m/s)
-  document.getElementById("wind").textContent = `${data.wind.speed} m/s`;
+  // Convert m/s → km/h (no decimals)
+const windKmh = Math.round(data.wind.speed * 3.6);
+windEl.textContent = `${windKmh} km/h`;
 
   // Update pressure (hPa)
   document.getElementById("pressure").textContent = `${data.main.pressure} hPa`;
