@@ -222,11 +222,34 @@ function saveToHistory(city) {
   }
 }
 
+// ---------------------------------------------
+// Render search history list
+// ---------------------------------------------
+
 // Build the visible list of past searches
 function renderHistory() {
   // Get the <ul> that holds history items
   const list = document.getElementById("history-list");
   // Clear existing list items
   list.innerHTML = "";
+
+  // Create one <li> per saved city
+  searchHistory.forEach(city => {
+    // Create a new list item element
+    const li = document.createElement("li");
+    // Show the city name as text
+    li.textContent = city;
+    // Add CSS class for styling
+    li.classList.add("history-item");
+
+    // Allow clicking a history item to search again
+    li.addEventListener("click", () => {
+      // Trigger a new weather fetch for this city
+      fetchWeather(city);
+    });
+
+    // Add the list item to the history <ul>
+    list.appendChild(li);
+  });
   
 }
