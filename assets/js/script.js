@@ -253,3 +253,20 @@ function renderHistory() {
   });
   
 }
+
+// Restore search history from localStorage on startup
+function loadHistory() {
+  // Read stored history string from localStorage
+  const stored = localStorage.getItem("history");
+  // If something was stored, parse and use it
+  if (stored) {
+    // Convert JSON string back to array
+    searchHistory = JSON.parse(stored);
+    // Render the restored history list
+    renderHistory();
+  }
+}
+
+// Load saved search history when the page first loads
+loadHistory();
+
