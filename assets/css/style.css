@@ -15,16 +15,25 @@ body {
 .main-grid {
   background: #e6e6fa;
   padding: 20px;
+   display: flex;
+  gap: 20px;
+  align-items: flex-start;
 }
+
+/* Left column */
 
 .left-column {
   background: #fafad2;
   padding: 20px;
+  flex: 0 0 35%
 }
+
+/* Right column */
 
 .right-column {
   background: #6fbfd9;
   padding: 20px;
+  flex: 1;
 }
 
 #search-section { 
@@ -78,4 +87,10 @@ body {
   width: 140px;
   text-align: center;
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+@media (max-width: 768px) {
+  .main-grid {
+    flex-direction: column;
+  }
 }
