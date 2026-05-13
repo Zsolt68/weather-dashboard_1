@@ -52,7 +52,7 @@ form.addEventListener("submit", function (e) {
 
   // Save this city into the search history list
   saveToHistory(city);
-  
+
   // Clear the input field after searching
   input.value = ""; // Clear input field after searching
 });
@@ -65,41 +65,28 @@ function fetchWeather(city) {
   // Build full API request URL with city, key, and metric units
   const url = `${currentWeatherURL}?q=${city}&appid=${apiKey}&units=metric`;
 
-  // Log URL to verify correct request format
-  console.log("STEP 1: about to call fetch with URL:", url);
-
   // Send HTTP request to OpenWeather API
   fetch(url)
     .then((res) => {
-      // Log raw response object for debugging
-      console.log("STEP 2: raw response:", res);
 
       // Check if API returned a success status (200–299)
       if (!res.ok) {
         // Log failed status code for debugging
-        console.log("STEP 3: response NOT OK, status:", res.status);
 
         // Stop chain and send error to catch()
         throw new Error("City not found");
       }
 
-      // Log success before converting to JSON
-      console.log("STEP 3: response OK, converting to JSON");
-
       // Convert response body to JSON object
       return res.json();
     })
     .then((data) => {
-      // Log parsed JSON for debugging
-      console.log("STEP 4: parsed JSON data:", data);
 
       // Update UI with weather data
       updateCurrentWeather(data);
       fetchForecast(city); // Fetch forecast after current weather
     })
     .catch((error) => {
-      // Log error message for debugging
-      console.log("STEP 5: error in fetch chain:", error.message);
 
       // Show user-friendly error message
       message.textContent = "City not found.";
@@ -157,8 +144,6 @@ function fetchForecast(city) {
   // Build forecast API URL
   const url = `${forecastURL}?q=${city}&appid=${apiKey}&units=metric`;
 
-  console.log("STEP 5: Fetching forecast with URL:", url);
-
   fetch(url)
     .then((res) => {
       console.log("STEP 5: raw forecast response:", res);
@@ -171,11 +156,10 @@ function fetchForecast(city) {
       return res.json();
     })
     .then((data) => {
-      console.log("STEP 5: forecast JSON data:", data);
       updateForecastUI(data);
     })
     .catch((error) => {
-      console.log("STEP 5: forecast error:", error.message);
+
     });
 }
 
@@ -214,7 +198,6 @@ function updateForecastUI(data) {
   
   });
 
-  console.log("STEP 5: Forecast UI updated");
 }
 
 // Save a searched city into history and localStorage
