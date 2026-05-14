@@ -114,6 +114,23 @@ Users expect:
 <img src="docs/wireframe.png">
 ---
 
+
+## 📁 Project Structure
+```
+weather-dashboard_1/
+│
+├── index.html
+├── style.css
+├── script.js
+│
+└── assets/
+├── css/
+├── js/
+└── images/
+```
+
+---
+
 ## 🧩 Features
 
 ### 🔍 Search City
@@ -222,35 +239,70 @@ Stores last 5 searched cities
 
 ---
 
-## Deployment
+## Project Deployment
 
-###🚀 GitHub Pages
+The Weather Dashboard can be deployed online or run locally. Below are clear instructions for both.
+
+###🚀 GitHub Pages Deployment
+The project is deployed using GitHub Pages.
 - Go to Settings → Pages
-- Select branch: main
+- Under Source, select:
+- Branch: main
 - Folder: /root
-- Save
-- Your site becomes available at: https://your-username.github.io/weather-dashboard/
-
+- click Save
+- GitHub will generate a live URL, for example: https://your-username.github.io/weather-dashboard/
+- Your site will now be publicly accessible at: https://your-username.github.io/weather-dashboard/
+  
 ### Local Deployment
-- Clone the repository
-- Open index.html in any browser
-- No server required
-- 
+
+### Cloning the Repository
+To clone the project:
+- Open your terminal.
+- Run: git clone https://github.com/your-username/weather-dashboard.git
+- Navigate into the folder: cd weather-dashboard
+- Open the project in your preferred editor (VS Code, Gitpod, etc.).
+
+### Running the Project Locally
+This project does not require a server.
+- Open the project folder.
+- Double‑click index.html to open it in your browser.
+- Ensure your OpenWeatherMap API key is correctly added to your JavaScript file.
+The site will run immediately.
+
 ---
 
-## 📁 Project Structure
-'''
-weather-dashboard_1/
-│
-├── index.html
-├── style.css
-├── script.js
-│
-└── assets/
-├── css/
-├── js/
-└── images/
-'''
+## Scope for Improved UX on First Arriving on the Application
+While the Weather Dashboard is functional and easy to use, there is room to enhance the user experience when first landing on the page.
+
+### 1. Display a Default City
+Instead of showing an empty dashboard, the app could automatically load:
+- the user’s current location (via geolocation), or
+- a default city such as Dublin or London.
+This provides immediate value and avoids an empty interface.
+
+### 2. Add a Welcome Message
+A short introductory message could explain:
+- how to search for a city
+- what information will be displayed
+- how recent searches work
+This helps first‑time users understand the app instantly.
+
+### 3. Highlight the Search Bar
+A subtle animation or highlight could draw attention to the search input, guiding the user’s first action.
+
+### 4. Provide Example Searches
+Clickable suggestions such as:
+
+- “Try: Paris, Tokyo, New York”
+This helps users understand what to do immediately.
+
+### 5. Improve Visual Hierarchy
+Ensuring that the search bar and the main weather card are visually dominant helps users know where to start.
+
+### 6. Add a Loading State
+A simple loading spinner or “Fetching weather…” message improves clarity and perceived performance.
+
+
 ---
 
 ## 🧪 Testing
