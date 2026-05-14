@@ -117,16 +117,42 @@ Users expect:
 
 ## 📁 Project Structure
 ```
-weather-dashboard_1/
+main/
 │
-├── index.html
-├── style.css
-├── script.js
+├── .vscode/
+│   └── settings.json              # Editor configuration (if present)
 │
-└── assets/
-├── css/
-├── js/
-└── images/
+├── assets/
+│   ├── css/
+│   │   ├── style.css              # Main stylesheet
+│   │   └── images/
+│   │       └── icon-rain-cloud.png
+│   │
+│   └── js/
+│       └── script.js              # Main JavaScript logic
+│
+├── docs/
+│   ├── Dev 1.png
+│   ├── Dev 1.1.png
+│   ├── Dev 2.1.png
+│   ├── Dev 3.png
+│   ├── Dev 4.png
+│   ├── Dev 5.png
+│   ├── Dev 6.png
+│   ├── Dev 7.png
+│   ├── Dev_debug_step 5.png
+│   ├── HTML_Validator.png
+│   ├── JSHint_validation.png
+│   ├── Jigsaw_css_validation.png
+│   ├── Lighthouse_test.png
+│   ├── Mock_website.png
+│   ├── flat-devices-mockup.png
+│   └── TESTING.md                 # Full testing documentation
+│
+├── index.html                     # Main HTML file
+├── style.css                      # (If separate from assets/css)
+└── README.md                      # Project documentation
+
 ```
 
 ---
