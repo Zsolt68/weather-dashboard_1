@@ -134,8 +134,6 @@ windEl.textContent = `${windKmh} km/h`;
   // Update pressure (hPa)
   document.getElementById("pressure").textContent = `${data.main.pressure} hPa`;
 
-  // Log confirmation for testing
-  console.log("STEP 4: UI updated with current weather data");
 }
 
 // Fetch 5-day forecast data from API
