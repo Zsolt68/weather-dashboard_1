@@ -266,9 +266,12 @@ weather-dashboard_1/
 
 | Issue | Fix |
 |-------|-----|
-| Empty screen on first load•	step 5 did not appear in the console > the weather cards are not created. Fix forecast container ID mismatch by targeting #forecast-cards for 5‑day output | Added default city (Dublin) |
-| Unclear UX on arrival | Added welcome message and instructions |
-| Missing images folder on GitHub | Committed and pushed folder manually |
+| Empty screen on first load•	step 5 did not appear in the console > the weather cards are not created. Fix forecast container ID mismatch by targeting #forecast-cards for 5‑day output | Added default city (Dublin) | 
+<img src="docs/Dev_debug_step 5.png">
+
+| •	Temperature, “Feels like”and weather cards show in decimals instead of whole numbers  | Round current temperature and feels-like values to whole numbers for cleaner UI” |
+
+<img src="docs/Dev 5.png">Applied flexbox layout to #forecast-cards for horizontal 5‑day forecast display Committed and pushed folder manually |
 
 ---
 
@@ -300,9 +303,14 @@ assets/images/weather-dashboard_2026-03-09_002814.png
 ## 🧾 Credits
 
 - OpenWeather API for data
-- Bootstrap for layout
-- Icons from Font Awesome
+- Icons from OpenWeatherMap
 
-## 🧑‍💻 Author
+### 🧑‍💻 Developer
+ Zsolt Földes  
+Weather Dashboard — 2026
 
-Zsolt Földes 
+### 🙏 Acknowledgements
+- Code Institute learning materials
+- MDN Web Docs
+- Stack Overflow community
+
