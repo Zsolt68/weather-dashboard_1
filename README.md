@@ -193,6 +193,11 @@ Stores last 5 searched cities
 - Added placeholder src to avoid empty image errors
 <img src="docs/HTML_Validator.png">
 
+### Lighhouse Report
+
+<img src="docs/Lighthouse_test.png">
+
+
 ### ✔ CSS Validation
 - Passed W3C CSS Validator
 - No critical errors
@@ -209,9 +214,9 @@ Stores last 5 searched cities
 ### ✔ Manual Testing
 
 - Search functionality tested with multiple cities
-- Recent search buttons tested
+- Recent Searches feature tested
 - Error handling tested (invalid city, empty input)
-- Responsive design tested on mobile, tablet, desktop
+- Responsive design tested on mobile, tablet, laptop and desktop
 - Forecast cards display correct data
 - API errors handled gracefully
 
@@ -226,7 +231,11 @@ Stores last 5 searched cities
 - Save
 - Your site becomes available at: https://your-username.github.io/weather-dashboard/
 
-
+### Local Deployment
+- Clone the repository
+- Open index.html in any browser
+- No server required
+- 
 ---
 
 ## 📁 Project Structure
@@ -257,7 +266,7 @@ weather-dashboard_1/
 
 | Issue | Fix |
 |-------|-----|
-| Empty screen on first load | Added default city (Dublin) |
+| Empty screen on first load•	step 5 did not appear in the console > the weather cards are not created. Fix forecast container ID mismatch by targeting #forecast-cards for 5‑day output | Added default city (Dublin) |
 | Unclear UX on arrival | Added welcome message and instructions |
 | Missing images folder on GitHub | Committed and pushed folder manually |
 
