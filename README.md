@@ -174,6 +174,413 @@ script.js order
 4. updateCurrentWeather()   ← Step 4
 5. fetchForecast()          ← Step 5 (first function)
 6. updateForecastUI()       ← Step 5 (second function)
+7. Step 6 functions (search history)
+
+### Step I. – Add minimal script.js and test form submit in Dev Tools/Console
+For this step, I only wire the form and log the city, no Weather API yet. > 
+```
+// Select form, input, and message elements
+const form = document.getElementById("search-form");
+const input = document.getElementById("city-input");
+const message = document.getElementById("search-message");
+
+// Handle form submit
+form.addEventListener("submit", function (e) {
+  e.preventDefault(); // Stop page reload
+  const city = input.value.trim(); // Get city text
+  if (city === "") {
+    message.textContent = "Please enter a city name.";
+setTimeout(() => (message.textContent = ""), 3000);
+    return;
+  }
+  console.log("Searching for city:", city); // Temp test output
+  input.value = ""; // Clear input
+});
+```
+
+Test it:
+1.	Open DevTools → Console.
+2.	Type a city (e.g. Dublin) and click Search.
+3.	You should see: Searching for city: Dublin
+4.	Try empty input → you should see the message under the form.
+
+### Step II: add current weather API call, test it, and commit that as a separate, clean change.
+
+1. DOM selectors
+2. API key
+3. Form submit handler
+4. fetchWeather()
+5. updateCurrentWeather()
+6. forecast functions
+
+### Step 1 — Handle form submit and validate the city > Add form submit handler with basic city validation and test "Please enter a city name” time out 3000 milliseconds
+Code (Step 1) > 
+
+```
+// Form, input, and message elements
+const form = document.getElementById("search-form");
+const input = document.getElementById("city-input");
+const message = document.getElementById("search-message");
+
+// Listen for form submit
+form.addEventListener("submit", function (e) {
+  e.preventDefault(); // Stop page reload
+
+  const city = input.value.trim(); // Read city text
+
+  if (city === "") {
+    message.textContent = "Please enter a city name.";
+    setTimeout(() => (message.textContent = ""), 3000);
+    return;
+  }
+
+  console.log("Searching for city:", city); // Debug log
+
+  // (In Step 1 we only log; fetchWeather will be added later)
+  input.value = ""; // Clear input
+});
+```
+<img src="docs/Dev 1.1.png">
+
+<img src="docs/Dev 1.2.png">
+
+### Step 2 - Create fetchWeather() and perform the first API request or basic fetch
+This step adds the function that actually contacts the OpenWeather API. No UI updates yet — just a working fetch and console output.
+
+Code-step 2
+
+```
+// Fetch current weather data for the given city
+function fetchWeather(city) {
+
+  // Log the city value for debugging
+  console.log("fetchWeather called with:", city);
+
+  // Build full API request URL with city, key, and metric units
+  const url = `${currentWeatherURL}?q=${city}&appid=${apiKey}&units=metric`;
+
+  // Log URL to verify correct request format
+  console.log("STEP 1: about to call fetch with URL:", url);
+
+  // Send HTTP request to OpenWeather API
+  fetch(url)
+    .then((res) => {
+      // Log raw response object for debugging
+      console.log("STEP 2: raw response:", res);
+
+      // Convert response body to JSON
+      return res.json();
+    })
+    .then((data) => {
+      // Log parsed JSON for debugging
+      console.log("STEP 3: parsed JSON data:", data);
+    });
+}
+```
+I saw this in the Console:
+-------------------------------------
+fetchWeather called with: Dublin
+STEP 1: about to call fetch with URL: ...
+STEP 2: raw response: Response { ... }
+STEP 3: parsed JSON data: { ... }
+
+<img src="docs/Dev 2.1.png">
+
+### Step 3 - Add API Error Handling (res.ok + .catch)
+🎯 Goal of Step 3
+Make the app handle:
+•	Invalid city names
+•	API errors (404, 401, 500…)
+•	Network failures
+•	Broken URLs
+•	Any unexpected fetch issues
+…and show a friendly message instead of crashing.
+Step 3- code
+
+```
+fetch(url)
+  .then((res) => {
+// Log raw HTTP response for debugging
+    console.log("STEP 2: raw response:", res);
+    // Check if API returned a success status (200–299)
+    if (!res.ok) {
+// Log failed status code for debugging
+      console.log("STEP 3: response NOT OK, status:", res.status);
+// Stop chain and send error to catch()
+      throw new Error("City not found");
+    }
+// Log success before converting to JSON
+    console.log("STEP 3: response OK, converting to JSON");
+// Convert response body to JSON object
+    return res.json(); 
+  })
+  .then((data) => {
+    console.log("STEP 4: parsed JSON data:", data);
+    updateCurrentWeather(data); // Update UI with weather data
+  })
+  .catch((error) => {
+    console.log("STEP 5: error in fetch chain:", error.message);
+
+    // Show user-friendly error message
+    message.textContent = "City not found.";
+
+    // Clear message after 3 seconds
+    setTimeout(() => (message.textContent = ""), 3000);
+  });
+```
+•	.then((res) => { … }) receives the raw HTTP response
+•	Step 3 must check res.ok before converting to JSON
+•	If the response is bad, we throw an error
+•	The thrown error jumps directly to .catch()
+•	The next .then((data) => …) only runs on success
+res.ok
+Checks if the API returned a successful HTTP status (200–299). If not, we throw an error to stop the chain.
+✔ throw new Error("City not found")
+Forces the code to jump to .catch().
+✔ .catch(error)
+Handles all errors:
+•	Invalid city
+•	Network down
+•	Wrong API key
+•	Broken URL
+•	JSON parsing issues
+✔ User-friendly message
+Instead of crashing, the UI shows: City not found, then clears after 3 seconds.
+res.ok is used to check whether the HTTP response from the OpenWeather API was successful (status 200–299). If the response is not OK, I throw an error to stop the promise chain.
+.catch() handles all errors from the fetch process, including invalid city names, network failures, or thrown errors. It displays a user friendly message and prevents the app from crashing.
+
+<img src="docs/Dev 3.png">
+
+### Step 4 - Update the Current Weather UI
+🎯 Goal
+Take the parsed JSON from Step 3 and display:
+•	City name
+•	Date
+•	Weather icon
+•	Temperature
+•	Description
+•	Feels like
+•	Humidity
+•	Wind
+•	Pressure
+This is done inside a new function: updateCurrentWeather(data)
+
+Step 4 – code
+
+```
+// Update the Current Weather section with API data
+function updateCurrentWeather(data) {
+
+  // Get city name from API response
+  const cityName = data.name;
+
+  // Convert timestamp to readable date
+  const date = new Date(data.dt * 1000).toLocaleDateString("en-GB");
+
+  // Build icon URL using icon code from API
+  const iconCode = data.weather[0].icon;
+  const iconURL = `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
+
+  // Update city name and date in UI
+  document.getElementById("city-name").textContent = cityName;
+  document.getElementById("current-date").textContent = date;
+```
+
+<img src="docs/Dev 4.png">
+
+```
+  // Update weather icon image
+  document.getElementById("weather-icon").src = iconURL;
+
+  // Update temperature (°C)
+  document.getElementById("temperature").textContent =
+    `${data.main.temp}°C`;
+```
+<img src="docs/Dev 4.1.png">
+
+```
+// Update weather description (e.g., "Cloudy")
+  document.getElementById("description").textContent =
+    data.weather[0].description;
+
+  // Update "feels like" temperature
+  document.getElementById("feels-like").textContent =
+    `${data.main.feels_like}°C`;
+
+  // Update humidity percentage
+  document.getElementById("humidity").textContent =
+    `${data.main.humidity}%`;
+
+  // Update wind speed (m/s)
+  document.getElementById("wind").textContent =
+    `${data.wind.speed} m/s`;
+
+  // Update pressure (hPa)
+  document.getElementById("pressure").textContent =
+    `${data.main.pressure} hPa`;
+
+  // Log confirmation for testing
+  console.log("STEP 4: UI updated with current weather data");
+}
+
+fetchWeather() calls updateCurrentWeather(data)
+```
+Therefore, Step 4 must be defined after Step 3, but before any forecast or search history functions.
+
+<img src="docs/Dev 4.1.png">
+
+
+### STEP 5 — Add the 5 Day Forecast
+🎯 Goal
+Fetch the forecast endpoint, filter the 3 hour data into 5 days, and display:
+•	date
+•	icon
+•	temperature
+•	description
+Each day becomes a small forecast card.
+Code for step 5 >
+
+```
+// Fetch 5-day forecast data from API
+function fetchForecast(city) {
+
+  // Build forecast API URL
+  const url = `${forecastURL}?q=${city}&appid=${apiKey}&units=metric`;
+
+  console.log("STEP 5: Fetching forecast with URL:", url);
+
+  fetch(url)
+    .then((res) => {
+      console.log("STEP 5: raw forecast response:", res);
+
+      // Handle invalid city
+      if (!res.ok) {
+        throw new Error("Forecast not found");
+      }
+
+      return res.json();
+    })
+    .then((data) => {
+      console.log("STEP 5: forecast JSON data:", data);
+      updateForecastUI(data);
+    })
+    .catch((error) => {
+      console.log("STEP 5: forecast error:", error.message);
+    });
+}
+```
+<img src="docs/Dev 5.png">
+
+### STEP 6 — Add Search History(localStorage + clickable items)
+
+### 6.1 — Add history array at the top of script.js
+let searchHistory = [];
+
+### 6.2 — Load history on page load
+loadHistory();
+
+### 6.3 — Save a city to history
+
+```
+// Save a searched city into history and localStorage
+function saveToHistory(city) {
+  // Skip if city already exists in history
+  if (!searchHistory.includes(city)) {
+    // Add city to in-memory history array
+    searchHistory.push(city);
+    // Persist updated history to localStorage
+    localStorage.setItem("history", JSON.stringify(searchHistory));
+    // Re-render the visible history list
+    renderHistory();
+  }
+}
+```
+<img src="docs/searchHistory.png">
+
+### 6.4 — Render the history list
+
+```
+// Build the visible list of past searches
+function renderHistory() {
+  // Get the <ul> that holds history items
+  const list = document.getElementById("history-list");
+  // Clear existing list items
+  list.innerHTML = "";
+
+  // Create one <li> per saved city
+  searchHistory.forEach(city => {
+    // Create a new list item element
+    const li = document.createElement("li");
+    // Show the city name as text
+    li.textContent = city;
+    // Add CSS class for styling
+    li.classList.add("history-item");
+
+    // Allow clicking a history item to search again
+    li.addEventListener("click", () => {
+      // Trigger a new weather fetch for this city
+      fetchWeather(city);
+    });
+
+    // Add the list item to the history <ul>
+    list.appendChild(li);
+  });
+}
+
+```
+### 6.5 — Load history from localStorage
+
+```
+// Restore search history from localStorage on startup
+function loadHistory() {
+  // Read stored history string from localStorage
+  const stored = localStorage.getItem("history");
+  // If something was stored, parse and use it
+  if (stored) {
+    // Convert JSON string back to array
+    searchHistory = JSON.parse(stored);
+    // Render the restored history list
+    renderHistory();
+  }
+}
+
+```
+
+Call loadHistory() once at the bottom
+// Load saved search history when the page first loads
+loadHistory();
+
+Wire it into your form submit
+Inside your existing submit handler:
+
+```
+form.addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  const city = input.value.trim();
+
+  if (city === "") {
+    message.textContent = "Please enter a city name.";
+    setTimeout(() => (message.textContent = ""), 3000);
+    return;
+  }
+
+  console.log("Searching for city:", city);
+
+  // Fetch weather for the entered city
+  fetchWeather(city);
+  // Save this city into search history
+  saveToHistory(city);
+  // Clear the input field
+  input.value = "";
+});
+
+```
+### 6.6 — Save history when a search is made
+fetchWeather(city);
+saveToHistory(city);
+input.value = "";
+
 
 
 
