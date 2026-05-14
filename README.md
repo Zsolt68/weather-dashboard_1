@@ -35,7 +35,7 @@ A responsive weather application that allows users to search for any city and vi
 
 +-------------------------------------------------------------+
 
-
+<img src="docs/Mock_website.png">
 ---
 
 ## 🧩 Features
