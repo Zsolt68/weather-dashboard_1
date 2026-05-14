@@ -103,7 +103,8 @@ function updateCurrentWeather(data) {
 
   // Build icon URL using icon code from API
   const iconCode = data.weather[0].icon;
-  const iconURL = `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
+  const iconEl = document.getElementById("weather-icon");
+  iconEl.src = `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
 
   // Update city name and date in UI
   document.getElementById("city-name").textContent = cityName;
@@ -127,9 +128,8 @@ function updateCurrentWeather(data) {
   // Update humidity percentage
   document.getElementById("humidity").textContent = `${data.main.humidity}%`;
 
-  // Convert m/s → km/h (no decimals)
-const windKmh = Math.round(data.wind.speed * 3.6);
-windEl.textContent = `${windKmh} km/h`;
+  // Update wind speed (m/s)
+  document.getElementById("wind").textContent = `${data.wind.speed} m/s`;
 
   // Update pressure (hPa)
   document.getElementById("pressure").textContent = `${data.main.pressure} hPa`;
