@@ -8,33 +8,6 @@ A responsive weather application that allows users to search for any city and vi
 
 # 🌦️ Weather Dashboard Wireframe
 
-+-------------------------------------------------------------+
-|                        Weather Dashboard                    |
-+-------------------------------------------------------------+
-
-| Search for a City | Current Weather |
-| --- | --- |
-| [ Search Bar ] | City: Baia Mare |
-| [ Search Button ] | Temperature: 11°C |
-| [ Use My Location] | Condition: Few Clouds ☁️ |
-|  | Feels Like: 11°C |
-| Recent Searches: | Humidity: 94% |
-| - Baia Mare | Wind: 3 km/h |
-| - Romania | Pressure: 1017 hPa |
-| - Ireland |  |
-| - Dublin |  |
-| - Ballinteer |  |
-
-| 5‑Day Forecast |
-| --- |
-| 2026‑05‑10 | 11°C | Scattered Clouds | ☁️ |
-| 2026‑05‑11 | 11°C | Clear Sky | ☀️ |
-| 2026‑05‑12 | 13°C | Light Rain | 🌧️ |
-| 2026‑05‑13 | 8°C | Light Rain | 🌦️ |
-| 2026‑05‑14 | 8°C | Overcast Clouds | ☁️ |
-
-+-------------------------------------------------------------+
-
 <img src="docs/wireframe.png">
 ---
 
