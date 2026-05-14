@@ -103,8 +103,7 @@ function updateCurrentWeather(data) {
 
   // Build icon URL using icon code from API
   const iconCode = data.weather[0].icon;
-  const iconEl = document.getElementById("weather-icon");
-  iconEl.src = `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
+  const iconURL = `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
 
   // Update city name and date in UI
   document.getElementById("city-name").textContent = cityName;
@@ -133,7 +132,6 @@ function updateCurrentWeather(data) {
 
   // Update pressure (hPa)
   document.getElementById("pressure").textContent = `${data.main.pressure} hPa`;
-
 }
 
 // Fetch 5-day forecast data from API
