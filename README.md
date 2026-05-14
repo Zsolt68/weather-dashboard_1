@@ -99,7 +99,7 @@ Users expect:
 
 ### Site Owner
 
-- I want users to easily understand how to use the Weather Dashboard.
+- I want users to understand how to use the Weather Dashboard easily.
 - I want users to receive accurate, real‑time weather information.
 - I want the site to be visually appealing and intuitive.
 - I want the website to be fully responsive across all devices.
@@ -210,7 +210,7 @@ Stores last 5 searched cities
 - Added placeholder src to avoid empty image errors
 <img src="docs/HTML_Validator.png">
 
-### Lighhouse Report
+### Lighthouse Report
 
 <img src="docs/Lighthouse_test.png">
 
@@ -236,7 +236,7 @@ Stores last 5 searched cities
 - Responsive design tested on mobile, tablet, laptop and desktop
 - Forecast cards display correct data
 - API errors handled gracefully
-
+Please check the TESTING.md file as well from the project's docs folder
 ---
 
 ## Project Deployment
