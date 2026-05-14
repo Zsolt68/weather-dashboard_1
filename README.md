@@ -2,6 +2,8 @@
 
 ![Mockup image](docs/flat-devices-mockup.png)
 
+**Developer: Zsolt Földes**
+
 A responsive weather application that allows users to search for any city and view current conditions and a 5‑day forecast. Built with HTML, CSS, and JavaScript using the OpenWeather API.
 
 # 🌦️ Weather Dashboard Wireframe
