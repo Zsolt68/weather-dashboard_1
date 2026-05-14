@@ -154,6 +154,28 @@ main/
 └── README.md                      # Project documentation
 
 ```
+## Project Development
+
+1. Divs done in the HTML file > Dev 1
+<img src="docs/Dev 1.png">
+
+Visual Map
+- Step 1 → Form handler
+- Step 2 → fetchWeather()
+- Step 3 → res.ok + catch()
+- Step 4 → updateCurrentWeather()  
+- Step 5 → forecast
+- Step 6 → search history
+
+script.js order
+1. API URLs + API key
+2. Event listeners
+3. fetchWeather()
+4. updateCurrentWeather()   ← Step 4
+5. fetchForecast()          ← Step 5 (first function)
+6. updateForecastUI()       ← Step 5 (second function)
+
+
 
 ---
 
