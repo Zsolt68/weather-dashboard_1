@@ -471,6 +471,9 @@ function fetchForecast(city) {
 ```
 <img src="docs/Dev 5.png">
 
+<img src="docs/Dev_debug_step 5.png">
+
+
 ### STEP 6 — Add Search History(localStorage + clickable items)
 
 ### 6.1 — Add history array at the top of script.js
@@ -495,12 +498,12 @@ function saveToHistory(city) {
   }
 }
 ```
-<img src="docs/searchHistory.png">
+
 
 ### 6.4 — Render the history list
 
 ```
-// Build the visible list of past searches
+// Build the visible l<img src="docs/searchHistory.png">ist of past searches
 function renderHistory() {
   // Get the <ul> that holds history items
   const list = document.getElementById("history-list");
@@ -569,7 +572,7 @@ form.addEventListener("submit", function (e) {
 
   // Fetch weather for the entered city
   fetchWeather(city);
-  // Save this city into search history
+  // Save this city in search history
   saveToHistory(city);
   // Clear the input field
   input.value = "";
@@ -580,9 +583,11 @@ form.addEventListener("submit", function (e) {
 fetchWeather(city);
 saveToHistory(city);
 input.value = "";
+```
 
+<img src="docs/Dev 6.png">
 
-
+<img src="docs/Dev 7.png">
 
 ---
 
